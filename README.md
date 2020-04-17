@@ -1,11 +1,12 @@
 # DEC-SAE
-Deep Embedded Clustering with Sparse Autoencoder (DEC-SAE)
+Deep Embedded Clustering with Sparse Autoencoder (DEC-SAE)  
+
 Based on [ASPC-DA](https://github.com/CuiZewen/ASPC-DA)  ASPC-DA:  acc(fmnist) = 0.60 acc(mnist) = 0.98  
 my model DEC-DA acc(fmnist) = 0.90339  acc(mnist) = 0.97553
 
 
-两天没有睡觉了，大致写一下，明天起来再继续完善(前天从linux换成win10，很多地方还没完善)
-I haven't slept for two days, so I will write it down roughly, and I will continue to improve it tomorrow when I get up (I just want to sleep now).
+两天没有睡觉了，大致写一下，明天起来再继续完善(前天从linux换成win10，很多地方还没完善)  
+I haven't slept for two days, so I will write it down roughly, and I will continue to improve it tomorrow when I get up (I just want to sleep now).  
 （目前我还不会使用git更新项目，第一次用，不知道咋样）
 
 
