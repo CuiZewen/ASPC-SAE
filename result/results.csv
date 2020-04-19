@@ -39,3 +39,5 @@ trials,acc,nmi,time
 mnist,,,
 trials,acc,nmi,time
 mnist,,,
+trials,acc,nmi,time
+mnist,,,

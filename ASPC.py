@@ -1,13 +1,13 @@
 from keras.models import Model
-from keras import callbacks
-import tensorflow as tf
+from keras import callbacks  #
+import tensorflow as tf ##加了个这个
 import numpy as np
 from time import time
 import math
 from sklearn.cluster import KMeans
 from MyModel import MyImageGenerator, autoencoder, generator
 import metrics
-
+## 这里面都差不多
 class ASPC(object):
     def __init__(self, dims, n_clusters):
         self.dims = dims
@@ -19,13 +19,13 @@ class ASPC(object):
         self.autoencoder, self.encoder = autoencoder(dims=dims)
         self.model = self.encoder
         self.pretrained = False
-
+    ## TODO 这个地方还没换成nadam，留作疑问
     def pretrain(self, x, y=None,optimizer='adam', epochs=200, batch_size=256, save_dir='results/temp',
                  da_s1=False, verbose=1):
         print('Pretraining......')
         # self.autoencoder.compile(optimizer=optimizer, loss='mse')
         self.autoencoder.compile(optimizer=optimizer, loss=self.sparse_loss,metrics=['mse'])
-        #查看隠层是否正确
+        #查看隠层是否正确   TODO github里面有人这样搞，但是我还没验证...留作疑问吧
         # print(self.autoencoder.get_layer('encoder_3').output)
         csv_logger = callbacks.CSVLogger(save_dir + '/pretrain_log.csv')
         cb = [csv_logger]
@@ -111,7 +111,7 @@ class ASPC(object):
 
     def compile(self, optimizer='sgd', loss='mse'):
         self.model.compile(optimizer=optimizer, loss=loss)
-
+##稀疏编码器的部分，真的难受，这玩意
     def sparse_loss(self,y_true,y_pred):
         alpha = 7.5e-5 # 预设权重
         p = 0.2 # 稀疏度
@@ -152,7 +152,7 @@ class ASPC(object):
         logwriter = csv.DictWriter(logfile, fieldnames=['epoch', 'acc', 'nmi', 'Ln', 'Lc'])
         logwriter.writeheader()
 
-        best_ACC = 0
+        best_ACC = 0  ##这里我加了一个best_ACC,这样的话，我们就能进行比较了
         net_loss = 0
         clustering_loss = 0
         time_train = 0
@@ -174,6 +174,7 @@ class ASPC(object):
                 if epoch == 0:
                     print('ASPC model saved to \'%s/model_init.h5\'' % save_dir)
                     self.model.save_weights(save_dir + '/model_init.h5')
+                ##进行比较
                 if acc > best_ACC:
                     self.model.save_weights(save_dir + '/model_best.h5')
                     best_ACC = acc

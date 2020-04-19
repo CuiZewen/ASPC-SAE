@@ -6,7 +6,7 @@ from keras import regularizers
 import numpy as np
 
 
-def autoencoder(dims, act='relu',plot_out=False):
+def autoencoder(dims, act='relu',plot_out=False):  ##TODO 我还不会在win上，plot_out
     """
     Fully connected auto-encoder model, symmetric.
     Arguments:
@@ -31,7 +31,9 @@ def autoencoder(dims, act='relu',plot_out=False):
     # hidden layer
     h = Dense(dims[-1], kernel_initializer=init, name='encoder_%d' % (n_stacks - 1),
               activity_regularizer=regularizers.l1(1e-5),activation='sigmoid')(h)
-
+##在隐藏层这里，我添加了activity_regularizer=regularizers.l1(1e-5),activation='sigmoid')
+## 这是全连接层的官方文档   http://keras-cn.readthedocs.io/en/latest/layers/core_layer/
+##这是当时看到的文章    https: // blog.csdn.net / u012969412 / article / details / 70882296
     y = h
     # internal layers in decoder
     for i in range(n_stacks-1, 0, -1):
@@ -39,9 +41,10 @@ def autoencoder(dims, act='relu',plot_out=False):
 
     # output
     y = Dense(dims[0], kernel_initializer=init, name='decoder_0')(y)
-    AE = Model(inputs=x, outputs=y, name='AE')
+    AE = Model(inputs=x, outputs=y, name='AE')    ##TODO 这个地方还不清楚
     Encoder = Model(inputs=x, outputs=h, name='encoder')
-    if plot_out:
+    ##这里我把之前的return Model(inputs=x, outputs=y, name='AE'), Model(inputs=x, outputs=h, name='encoder')换成了这样的，看着方便
+    if plot_out:   ##画图
         from keras.utils import plot_model
         plot_model(AE,'AE.png',show_shapes=True,
                show_layer_names=True)
