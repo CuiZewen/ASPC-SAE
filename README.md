@@ -1,7 +1,6 @@
 # Deep Embedded Clustering with Sparse Autoencoder (DEC-SAE)  
 
-Based on [ASPC-DA](https://github.com/CuiZewen/ASPC-DA)  ASPC-DA:  acc(fmnist) = 0.60 acc(mnist) = 0.98  
-my model DEC-DA acc(fmnist) = 0.90339  acc(mnist) = 0.97553
+
 ## Usage  
 
 ### 1. Prepare environment  
